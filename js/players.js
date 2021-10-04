@@ -6,6 +6,7 @@ export class Player {
         this.score = score;
         this.bomb = bombs;
         this.name = name;
+        this.busy = false;
     }
 
     startingPosition (){
@@ -29,17 +30,41 @@ export class Player {
         this.xPosition +=1;
     }
 
-    // canMove(){
-    //     if (((this.xPosition > -1) && (this.yPosition > -1))&&((this.xPosition < board.length) && (this.yPosition < board.length))) {
-    //         return true;
-    //     }else return false;
-    // }
+    isBusy(){//this will prevent the player to move while digging
+        this.busy =true;
+        setTimeout(() => {this.busy = false},1000);
+        return this.busy;
+    }
 
     dig(){
-
+        
+        switch (board[this.yPosition][this.xPosition]) {
+            case "R":
+                this.score+=100;
+                board[this.yPosition][this.xPosition] ="E"
+                break;
+            case "BR":
+                this.score+=200;
+                board[this.yPosition][this.xPosition] ="E"
+                break;
+            case "GR":
+                this.score+=500;
+                board[this.yPosition][this.xPosition] ="E"
+                break;
+            case "B":
+                this.bomb +=5;
+                board[this.yPosition][this.xPosition] ="E"
+                break;
+            default:
+                board[this.yPosition][this.xPosition] ="E"
+                break;
+        }
     }
 
     plantBomb (){
-        
+        if (this.bomb > 0) {
+            const plantedBomb = [this.yPosition,this.xPosition]
+            
+        }
     }   
 }

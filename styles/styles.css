@@ -1,0 +1,36 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    outline: solid red;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#background-image {
+    background-image: url("../img/desert-background2.jpg");
+    background-repeat: no-repeat;
+}
+
+.players {
+    max-width: 400px;
+}
+
+#board-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#board {
+    max-width: 75%;
+}
+
+section {
+    display: flex;
+    justify-content: center;
+}
