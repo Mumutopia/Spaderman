@@ -12,25 +12,44 @@ header {
     flex-direction: column;
 }
 
+section {
+    display: flex;
+    justify-content: center;
+}
+
 #background-image {
     background-image: url("../img/desert-background2.jpg");
     background-repeat: no-repeat;
+    background-size: 100%,auto ;
+    height: 45em;
+    
 }
 
 .players {
-    max-width: 400px;
+    max-width: 50%;
+}
+
+.players-div{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    width: 30%;
+    
+}
+
+#board {
+    height: 600px;
+    width: 600px;
 }
 
 #board-div {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-#board {
-    max-width: 75%;
+    flex-direction: column;
+    width: 45%;
 }
 
-section {
-    display: flex;
-    justify-content: center;
-}
+
+
