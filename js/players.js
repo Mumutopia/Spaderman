@@ -15,11 +15,11 @@ export class Player {
     }
 
     movingUp(){
-        this.yPosition +=1;
+        this.yPosition -=1;
     }
 
     movingDown(){
-        this.yPosition -=1;
+        this.yPosition +=1;
     }
 
     movingLeft(){
@@ -36,29 +36,48 @@ export class Player {
         return this.busy;
     }
 
-    dig(){
+    dig(position){
         
         switch (board[this.yPosition][this.xPosition]) {
             case "R":
                 this.score+=100;
-                board[this.yPosition][this.xPosition] ="E"
+                board[this.yPosition][this.xPosition] ="E";
+                position.classList.add("dug");
                 break;
             case "BR":
                 this.score+=200;
                 board[this.yPosition][this.xPosition] ="E"
+                position.classList.add("dug");
                 break;
             case "GR":
                 this.score+=500;
                 board[this.yPosition][this.xPosition] ="E"
+                position.classList.add("dug");
                 break;
             case "B":
                 this.bomb +=5;
                 board[this.yPosition][this.xPosition] ="E"
+                position.classList.add("dug");
                 break;
             default:
                 board[this.yPosition][this.xPosition] ="E"
+                position.classList.add("dug");
                 break;
         }
+    }
+
+    actualPosition (position,name){
+        if (position !== null) {
+            position.classList.add(`${name}-board`);
+        }
+        
+    }
+
+    formerPosition (position,name) {
+        if (position !== null) {
+            position.classList.remove(`${name}-board`);
+        }
+        
     }
 
     plantBomb (){
