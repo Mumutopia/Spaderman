@@ -224,7 +224,7 @@ function bombHasBeenPlantedGoRushB(terrorist, ct, position) {
       const bufferedPosition = document.getElementById( //I use this to get the actual position of the player
         `${terrorist.xPosition}.${terrorist.yPosition}`
       );
-      terrorist.Stunned(bufferedPosition,"player1");
+      terrorist.Stunned(bufferedPosition,terrorist.name);
       console.log(plantedBomb);
     }
     if (checkRadius(plantedBomb, bombP1Radius, ct)) {
@@ -233,7 +233,7 @@ function bombHasBeenPlantedGoRushB(terrorist, ct, position) {
       const bufferedPosition = document.getElementById( //I use this to get the actual position of the player,
         `${ct.xPosition}.${ct.yPosition}`
       );
-      ct.Stunned(bufferedPosition,"player2");
+      ct.Stunned(bufferedPosition,ct.name);
       console.log(player2.score);
       console.log(plantedBomb);
     }
