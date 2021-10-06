@@ -53,13 +53,21 @@ section {
 
 #wrapper {
     display:grid;
-    background-image: url("../img/desert-board-2.png");
+    background-image: url("../img/desert-board-3.png");
     background-size: 100%;
     height: 600px;
     width: 600px;
     grid-template-columns: repeat(10,1fr);
     grid-template-rows: repeat(10,1fr);
+    border: 1px solid;
 }
+
+#wrapper div {
+    border: 1px solid;
+    position:relative;
+}
+
+
 
 .dug {
     background-image: url("../img/hole2.png");
@@ -67,6 +75,13 @@ section {
     background-size: 60px,60px;
     
 }
+
+.bombs {
+    background-image: url("../img/bomb2.png");
+    background-repeat: no-repeat;
+    background-size: 60px,60px;
+}
+
 
 
 .player1-board {
@@ -76,12 +91,23 @@ section {
     
 }
 
+
 .player2-board {
     background-image: url("../img/red-shovel-mini2.png");
     background-size: 60px,60px;
     background-repeat: no-repeat;
     
 }
+
+.bomb-radius {
+    background-image: url("../img/bomb-radius.png");
+    background-size: 60px,60px;
+    background-repeat: no-repeat;
+    z-index: 300;
+}
+
+
+
 
 #player2 {
     color: #e31e25;
@@ -91,10 +117,10 @@ section {
     color:#0a76a7;
 }
 
+
+
 footer {
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
-
-

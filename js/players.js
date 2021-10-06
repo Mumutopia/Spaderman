@@ -36,6 +36,23 @@ export class Player {
         return this.busy;
     }
 
+    Stunned(printposition,name){
+        console.log(name);
+        let count = 0
+        let stunnedEffect = setInterval(() => {
+            printposition.classList.toggle(`${name}-board`)
+            count ++ 
+            if (count > 5) {
+                clearInterval(stunnedEffect);
+            }
+        }, 300);
+                    
+        
+        this.busy =true;
+        setTimeout(() => {this.busy = false},1800);
+        return this.busy;
+    }
+
     dig(position){
         
         switch (board[this.yPosition][this.xPosition]) {
@@ -80,10 +97,11 @@ export class Player {
         
     }
 
-    plantBomb (){
-        if (this.bomb > 0) {
-            const plantedBomb = [this.yPosition,this.xPosition]
-            
-        }
+    plantBomb (position){
+        
+        position.classList.add("bombs")
+        this.bomb --;
+        setTimeout(()=> position.classList.remove("bombs"),2000)
+        
     }   
 }
