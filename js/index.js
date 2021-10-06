@@ -3,6 +3,9 @@ import { Player } from "./players.js";
 
 let player1 = new Player(1, 1, 0, 5, "player1");
 let player2 = new Player(8, 8, 0, 5, "player2");
+let digAudio = [new Audio("../Sounds/digging.mp3"),new Audio("../Sounds/digging2.mp3")];
+export  let getItemAudio = [new Audio("../Sounds/get-item.mp3"),new Audio("../Sounds/get-item2.mp3"),new Audio("../Sounds/get-item3.mp3")];
+let bombAudio = [new Audio("../Sounds/bomb1.mp3"),new Audio("../Sounds/bomb2.mp3"),new Audio("../Sounds/bomb3.mp3"),new Audio("../Sounds/bomb4.mp3"),new Audio("../Sounds/bomb5.mp3")]
 let player1Score = document.getElementById("player1-score");
 let player2Score = document.getElementById("player2-score");
 let player1Bombs = document.getElementById("player1-bombs");
@@ -25,6 +28,11 @@ let printPlayer2Position = document.getElementById(
 );
 printPlayer2Position.classList.add("player2-board");
 
+export function randomItemsSound (){
+  setTimeout(() => {
+    getItemAudio[Math.floor(Math.random()*3)].play();
+  }, 1000);
+}
 function input(event) {
   //this function will listen to the input and act accordingly
   if (!player1.busy) {
@@ -72,6 +80,7 @@ function input(event) {
       case "m":
         player1.isBusy();
         player1.dig(printPlayer1Position);
+        digAudio[Math.floor(Math.random()*2)].play();
         break;
       case "l":
         if (player1.bomb > 0) {
@@ -130,6 +139,7 @@ function input(event) {
       case "f":
         player2.isBusy();
         player2.dig(printPlayer2Position);
+        digAudio[Math.floor(Math.random()*2)].play();
         break;
       case "g":
         console.log(printPlayer2Position);
@@ -213,8 +223,7 @@ function checkRadius(bomb, radius, player) {
 function bombHasBeenPlantedGoRushB(terrorist, ct, position) {
   // <== sorry for the name I coudln't resist...
   const plantedBomb = [terrorist.yPosition, terrorist.xPosition];
-  console.log(plantedBomb);
-  console.log(plantedBomb[0] - bombP1Radius <= terrorist.yPosition);
+  
 
   setTimeout(function () {
     //this makes the bomb blows in a linear pattern and check if P1 or P2 is inside the "radius"
@@ -225,6 +234,7 @@ function bombHasBeenPlantedGoRushB(terrorist, ct, position) {
         `${terrorist.xPosition}.${terrorist.yPosition}`
       );
       terrorist.Stunned(bufferedPosition,terrorist.name);
+      
       console.log(plantedBomb);
     }
     if (checkRadius(plantedBomb, bombP1Radius, ct)) {
@@ -237,6 +247,7 @@ function bombHasBeenPlantedGoRushB(terrorist, ct, position) {
       console.log(player2.score);
       console.log(plantedBomb);
     }
+    bombAudio[Math.floor(Math.random()*5)].play();
     (function displayRadiusX() { //Yay my first IIFE !! it adds the bomb radius on the horizontal axe 
       for (let i = (-bombP1Radius); i <= bombP1Radius; i++) {
         position = document.getElementById(

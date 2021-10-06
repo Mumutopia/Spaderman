@@ -1,4 +1,9 @@
 import { board } from "./board.js";
+
+import { randomItemsSound } from "./index.js";
+
+
+
 export class Player {
     constructor(x,y,score,bombs,name){
         this.xPosition = x;
@@ -60,21 +65,25 @@ export class Player {
                 this.score+=100;
                 board[this.yPosition][this.xPosition] ="E";
                 position.classList.add("dug");
+                randomItemsSound();
                 break;
             case "BR":
                 this.score+=200;
                 board[this.yPosition][this.xPosition] ="E"
                 position.classList.add("dug");
+                randomItemsSound();
                 break;
             case "GR":
                 this.score+=500;
                 board[this.yPosition][this.xPosition] ="E"
                 position.classList.add("dug");
+                randomItemsSound();
                 break;
             case "B":
                 this.bomb +=5;
                 board[this.yPosition][this.xPosition] ="E"
                 position.classList.add("dug");
+                randomItemsSound();
                 break;
             default:
                 board[this.yPosition][this.xPosition] ="E"
