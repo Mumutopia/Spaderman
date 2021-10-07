@@ -15,8 +15,9 @@ export let getItemAudio = [
   new Audio("/sounds/get-item2.mp3"),
   new Audio("/sounds/get-item3.mp3"),
 ];
-let gameAudio = new Audio("/sounds/game-music.mp3");
-let gameIntroOutro = new Audio("/sounds/intro2.mp3");
+let gameAudio = new Audio("/sounds/game-music2.mp3");
+let gameIntro = new Audio("/sounds/intro2.mp3");
+let gameOutro = new Audio("/sounds/intro2.mp3");
 let bombAudio = [
   new Audio("/sounds/bomb1.mp3"),
   new Audio("/sounds/bomb2.mp3"),
@@ -46,13 +47,13 @@ let printPlayer2Position = document.getElementById(
   `${player2.xPosition}.${player2.yPosition}`
 );
 printPlayer2Position.classList.add("player2-board");
-console.log(modalStart);
 
-
+gameIntro.play(); //so the intro songs plays straigth away.
 
 startButton.onclick = function () {
   modalStart.style.display = "none";
   wrapperSelector.classList.remove("details");
+  gameIntro.pause();
   startGame();
 };
 
@@ -63,8 +64,19 @@ function startGame() {
 }
 
 export function randomItemsSound() {
+  //will trigger one of the 3 sound when an item is picked, after 1 second.
   setTimeout(() => {
     getItemAudio[Math.floor(Math.random() * 3)].play();
+  }, 1000);
+}
+
+export function popDugItem(position, type) {
+  //will pop the class of the item for 200ms so you see you dug something.
+  setTimeout(() => {
+    position.classList.add(`${type}`);
+    setTimeout(() => {
+      position.classList.remove(`${type}`);
+    }, 200);
   }, 1000);
 }
 
@@ -191,6 +203,7 @@ function input(event) {
 }
 
 function createGrid() {
+  //create and implement a grid on the DOM, based on the board.size
   let insertDiv = "";
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
@@ -201,6 +214,7 @@ function createGrid() {
 }
 
 function printDisplay() {
+  //refresh score/time/bombs every seconds. Also works as the count down for the game.
   let count = 83;
   let wholeDisplay = setInterval(() => {
     player1Score.innerText = player1.score;
@@ -217,7 +231,8 @@ function printDisplay() {
 }
 
 function printWinner() {
-  gameIntroOutro.play();
+  //pop the end game modal, based on the winner.
+  gameOutro.play();
   if (player1.score > player2.score) {
     displayWinner.innerText = "Blue Wins !!";
     modalEnd.style.display = "flex";
@@ -229,7 +244,7 @@ function printWinner() {
 }
 
 function randomizeBoardContent() {
-  //put randomly inside the boards  : rubies and bombs
+  //put items randomly  inside the boards  : rubies and bombs
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
       board[i][j] = Math.floor(Math.random() * 10);
@@ -248,6 +263,7 @@ function randomizeBoardContent() {
 }
 
 function checkRadius(bomb, radius, player) {
+  //use to detect if the players are caught in the bomb "radius", and make the radius linear.
   if (
     bomb[0] - radius <= player.yPosition &&
     bomb[0] + radius >= player.yPosition &&
@@ -264,9 +280,8 @@ function bombHasBeenPlantedGoRushB(terrorist, ct, position) {
   const plantedBomb = [terrorist.yPosition, terrorist.xPosition];
 
   setTimeout(function () {
-    //this makes the bomb blows in a linear pattern and check if P1 or P2 is inside the "radius"
+    //makes the bomb blows after 2 seconds
     if (checkRadius(plantedBomb, bombP1Radius, terrorist)) {
-      console.log(`${terrorist.name}touché`);
       terrorist.score -= 200;
       const bufferedPosition = document.getElementById(
         //I use this to get the actual position of the player
@@ -277,7 +292,6 @@ function bombHasBeenPlantedGoRushB(terrorist, ct, position) {
       console.log(plantedBomb);
     }
     if (checkRadius(plantedBomb, bombP1Radius, ct)) {
-      console.log(`${ct.name}touché`);
       ct.score -= 200;
       const bufferedPosition = document.getElementById(
         //I use this to get the actual position of the player,
@@ -289,7 +303,7 @@ function bombHasBeenPlantedGoRushB(terrorist, ct, position) {
     }
     bombAudio[Math.floor(Math.random() * 5)].play();
     (function displayRadiusX() {
-      //Yay my first IIFE !! it adds the bomb radius on the horizontal axe
+      //Yay my first IIFE !! it displays the bomb radius on the horizontal axe
       for (let i = -bombP1Radius; i <= bombP1Radius; i++) {
         position = document.getElementById(
           `${plantedBomb[1]}.${plantedBomb[0] + i}`
@@ -304,7 +318,7 @@ function bombHasBeenPlantedGoRushB(terrorist, ct, position) {
       }
     })();
     (function displayRadiusY() {
-      //Yay my 2nd IIFE !! it adds the bomb radius on the vertical axe
+      //Yay my 2nd IIFE !! it displays the bomb radius on the vertical axe
       for (let i = -bombP1Radius; i <= bombP1Radius; i++) {
         position = document.getElementById(
           `${plantedBomb[1] + i}.${plantedBomb[0]}`

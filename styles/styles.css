@@ -1,248 +1,256 @@
 @font-face {
-    font-family: "Cartoon";
-    src: url(/content/bm.ttf);
-
-    
+  font-family: "Cartoon";
+  src: url(/content/bm.ttf);
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
 
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 body {
-    position: relative;
+  position: relative;
 }
-
 
 #modal-start {
-    height: 100vh;
-    width: 100vw;
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 10;
-    background: #463f3f52;
-    color: white;
-    outline: black;
-    
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  background: #463f3f52;
+  color: white;
+  outline: black;
 }
 
-
-
 #modal-start h2 {
-    background: white;
-    color: #c46330;
+  background: white;
+  color: #c46330;
 }
 
 #modal-start p {
-    color: black;
+  color: black;
 }
 
 #modal-start div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-    padding: 5px;
-    outline: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  padding: 5px;
+  outline: 2px solid black;
 }
 
 #modal-start button {
-    height: 20px;
-    
+  height: 20px;
 }
 
 #modal-end {
-    height: 100vh;
-    width: 100vw;
-    position: absolute;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 11;
-    background: #463f3fad;
-    color: white;
-    transition: opacity;
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 11;
+  background: #463f3fad;
+  color: white;
+  transition: opacity;
 }
 
 #modal-end h2 {
-    color: #c46330;
+  color: #c46330;
 }
 
 #modal-end div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-    padding: 5px;
-    outline: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  padding: 5px;
+  outline: 2px solid black;
 }
-
 
 header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding-bottom: 1%;
-    color: #c46330;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  padding-bottom: 1%;
+  color: #c46330;
+  max-width: 100%;
+  max-height: 12%;
+  padding: 2px 5%;
 }
 
-h1{
-    font-size: 4em;
-    font-family: "Cartoon";
-    padding-top: 20px;
+h1 {
+  font-size: 4em;
+  font-family: "Cartoon";
+  padding-top: 20px;
 }
 
 h2 {
-    
-    font-family: 'Permanent Marker';
+  font-family: "Permanent Marker";
 }
 
-header span{
-    font-style: bold;
-    font-family: 'Permanent Marker', cursive;
-    font-size: 1.5em;
+#main-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-section {
-    display: flex;
-    justify-content: center;
+.surround-title-images {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+header span {
+  font-style: bold;
+  font-family: "Permanent Marker", cursive;
+  font-size: 1.5em;
+}
+
+header img {
+  width: 60px;
+}
+
+#main-section {
+  display: flex;
+  justify-content: center;
+  padding: 2px 5%;
+  max-width: 100%;
 }
 
 body {
-    background-image: url("../img/desert-background2.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 100vh;
-    width: 100vw;
+  background-image: url("../img/desert-background2.jpg");
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100vw;
 }
-
-
 
 .players {
-    max-width: 50%;
+  max-width: 40%;
 }
 
-
-.players-div{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-direction: column;
-    width: 30%;
-    
+.players-div {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  max-width: 30%;
 }
 
 #board {
-    height: 600px;
-    width: 600px;
+  height: 600px;
+  width: 600px;
 }
 
 #board-div {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-direction: column;
-    width: 45%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  width: 45%;
 }
 
 #wrapper {
-    display:grid;
-    background-image: url("../img/desert-board-3.png");
-    background-size: 100%;
-    height: 600px;
-    width: 600px;
-    grid-template-columns: repeat(10,1fr);
-    grid-template-rows: repeat(10,1fr);
-    border: 1px solid;
-    transition: all 0.5s ease-in-out;
-    
+  display: grid;
+  background-image: url("../img/desert-board-3.png");
+  background-size: 100%;
+  height: 600px;
+  width: 600px;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  border: 8px solid;
+  transition: all 0.5s ease-in-out;
 }
-
 
 #wrapper div {
-    border: 1px solid;
-    position:relative;
-    
+  border: 1px solid #0000004f;
+  position: relative;
 }
 
-.details
-{
-		transform: rotateX(60deg) translateY(150px);
-        transition: all 0.5s ease-in-out;
-		box-shadow: 0px 30px 60px 0px rgba(0,0,0,0.75);
-        
+.details {
+  transform: rotateX(60deg) translateY(150px);
+  transition: all 0.5s ease-in-out;
+  box-shadow: 0px 30px 60px 0px rgba(0, 0, 0, 0.75);
 }
 
 .dug {
-    background-image: url("../img/hole2.png");
-    background-repeat: no-repeat;
-    background-size: 60px,60px;
-    
+  background-image: url("../img/hole2.png");
+  background-repeat: no-repeat;
+  background-size: 60px, 60px;
 }
 
 .bombs {
-    background-image: url("../img/bomb2.png");
-    background-repeat: no-repeat;
-    background-size: 60px,60px;
+  background-image: url("../img/bomb2.png");
+  background-repeat: no-repeat;
+  background-size: 60px, 60px;
 }
-
-
 
 .player1-board {
-    background-image: url("../img/blue-shovel-mini2.png");
-    background-size: 60px,60px;
-    background-repeat: no-repeat;
+  background-image: url("../img/blue-shovel-mini2.png");
+  background-size: 60px, 60px;
+  background-repeat: no-repeat;
 }
 
-
 .player2-board {
-    background-image: url("../img/red-shovel-mini2.png");
-    background-size: 60px,60px;
-    background-repeat: no-repeat;
-    
+  background-image: url("../img/red-shovel-mini2.png");
+  background-size: 60px, 60px;
+  background-repeat: no-repeat;
+}
+
+.ruby {
+  background-image: url("../img/R2.png");
+  background-size: 60px 60px;
+  background-repeat: no-repeat;
+}
+
+.blue-ruby {
+  background-image: url("../img/Br2.png");
+}
+
+.golden-ruby {
+  background-image: url("../img/Gr2.png");
+}
+
+.bomb {
+  background-image: url("../img/bomb2.png");
 }
 
 .bomb-radius {
-    background-image: url("../img/bomb-radius.png");
-    background-size: 60px,60px;
-    background-repeat: no-repeat;
-    z-index: 300;
+  background-image: url("../img/bomb-radius.png");
+  background-size: 60px, 60px;
+  background-repeat: no-repeat;
+  z-index: 300;
 }
 
-
-
-
 #player2 {
-    color: #e31e25;
+  color: #e31e25;
 }
 
 #player1 {
-    color:#0a76a7;
+  color: #0a76a7;
 }
 
-
-
 footer {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin-top: 3%;
-    padding: 10px 10px;
-    border-top: black;
-    
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 3%;
+  padding: 2px 5%;
+  border-top: black;
 }
 
 footer h3 {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
-
