@@ -6,6 +6,7 @@
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+
 * {
     padding: 0;
     margin: 0;
@@ -13,22 +14,92 @@
     
 }
 
+body {
+    position: relative;
+}
+
+
+#modal-start {
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    background: #463f3f52;
+    color: white;
+    outline: black;
+    
+}
+
+
+
+#modal-start h2 {
+    background: white;
+    color: #c46330;
+}
+
+#modal-start p {
+    color: black;
+}
+
+#modal-start div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 5px;
+    outline: 2px solid black;
+}
+
+#modal-start button {
+    height: 20px;
+    
+}
+
+#modal-end {
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 11;
+    background: #463f3fad;
+    color: white;
+    transition: opacity;
+}
+
+#modal-end h2 {
+    color: #c46330;
+}
+
+#modal-end div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 5px;
+    outline: 2px solid black;
+}
+
+
 header {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     padding-bottom: 1%;
-    margin-bottom : 1%;
-    margin-top: 1%;
-    /* border-bottom: 2px solid #e48130; */
-    
     color: #c46330;
 }
 
 h1{
     font-size: 4em;
     font-family: "Cartoon";
+    padding-top: 20px;
 }
 
 h2 {
@@ -50,14 +121,17 @@ section {
 body {
     background-image: url("../img/desert-background2.jpg");
     background-repeat: no-repeat;
-    background-size: 100%,100% ;
-    
-    
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
 }
+
+
 
 .players {
     max-width: 50%;
 }
+
 
 .players-div{
     display: flex;
@@ -90,14 +164,24 @@ body {
     grid-template-columns: repeat(10,1fr);
     grid-template-rows: repeat(10,1fr);
     border: 1px solid;
+    transition: all 0.5s ease-in-out;
+    
 }
+
 
 #wrapper div {
     border: 1px solid;
     position:relative;
+    
 }
 
-
+.details
+{
+		transform: rotateX(60deg) translateY(150px);
+        transition: all 0.5s ease-in-out;
+		box-shadow: 0px 30px 60px 0px rgba(0,0,0,0.75);
+        
+}
 
 .dug {
     background-image: url("../img/hole2.png");
@@ -118,7 +202,6 @@ body {
     background-image: url("../img/blue-shovel-mini2.png");
     background-size: 60px,60px;
     background-repeat: no-repeat;
-    
 }
 
 
@@ -154,5 +237,12 @@ footer {
     justify-content: space-around;
     align-items: center;
     margin-top: 3%;
+    padding: 10px 10px;
+    border-top: black;
+    
+}
+
+footer h3 {
+    margin-bottom: 10px;
 }
 

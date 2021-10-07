@@ -1,24 +1,43 @@
 import { board } from "./board.js";
 import { Player } from "./players.js";
+import { gamepad } from "./gamepad.js";
+
+// gamepad.connect()
 
 let player1 = new Player(1, 1, 0, 5, "player1");
 let player2 = new Player(8, 8, 0, 5, "player2");
-let digAudio = [new Audio("../Sounds/digging.mp3"),new Audio("../Sounds/digging2.mp3")];
-export  let getItemAudio = [new Audio("../Sounds/get-item.mp3"),new Audio("../Sounds/get-item2.mp3"),new Audio("../Sounds/get-item3.mp3")];
-let bombAudio = [new Audio("../Sounds/bomb1.mp3"),new Audio("../Sounds/bomb2.mp3"),new Audio("../Sounds/bomb3.mp3"),new Audio("../Sounds/bomb4.mp3"),new Audio("../Sounds/bomb5.mp3")]
+let digAudio = [
+  new Audio("../Sounds/digging.mp3"),
+  new Audio("../Sounds/digging2.mp3"),
+];
+export let getItemAudio = [
+  new Audio("../Sounds/get-item.mp3"),
+  new Audio("../Sounds/get-item2.mp3"),
+  new Audio("../Sounds/get-item3.mp3"),
+];
+let gameAudio = new Audio("../Sounds/game-music.mp3");
+let gameIntroOutro = new Audio("../Sounds/intro2.mp3");
+let bombAudio = [
+  new Audio("../Sounds/bomb1.mp3"),
+  new Audio("../Sounds/bomb2.mp3"),
+  new Audio("../Sounds/bomb3.mp3"),
+  new Audio("../Sounds/bomb4.mp3"),
+  new Audio("../Sounds/bomb5.mp3"),
+];
 let player1Score = document.getElementById("player1-score");
 let player2Score = document.getElementById("player2-score");
 let player1Bombs = document.getElementById("player1-bombs");
 let player2Bombs = document.getElementById("player2-bombs");
+let startButton = document.getElementById("start-button");
+let modalStart = document.getElementById("modal-start");
+let modalEnd = document.getElementById("modal-end");
+let displayWinner = document.getElementById("printWinner");
 let bombP1Radius = 2;
-let players1PlantBomb = document.getElementById(
-  `${player1.xPosition}.${player1.yPosition}`
-);
 let timeLeft = document.getElementById("time-left");
 let wrapperSelector = document.getElementById("wrapper");
 createGrid();
 randomizeBoardContent();
-printDisplay();
+
 let printPlayer1Position = document.getElementById(
   `${player1.xPosition}.${player1.yPosition}`
 );
@@ -27,12 +46,28 @@ let printPlayer2Position = document.getElementById(
   `${player2.xPosition}.${player2.yPosition}`
 );
 printPlayer2Position.classList.add("player2-board");
+console.log(modalStart);
 
-export function randomItemsSound (){
+
+
+startButton.onclick = function () {
+  modalStart.style.display = "none";
+  wrapperSelector.classList.remove("details");
+  startGame();
+};
+
+function startGame() {
+  printDisplay();
+  gameAudio.play();
+  document.addEventListener("keyup", (event) => input(event)); //listen to all the keyboard input after the game starts
+}
+
+export function randomItemsSound() {
   setTimeout(() => {
-    getItemAudio[Math.floor(Math.random()*3)].play();
+    getItemAudio[Math.floor(Math.random() * 3)].play();
   }, 1000);
 }
+
 function input(event) {
   //this function will listen to the input and act accordingly
   if (!player1.busy) {
@@ -80,7 +115,7 @@ function input(event) {
       case "m":
         player1.isBusy();
         player1.dig(printPlayer1Position);
-        digAudio[Math.floor(Math.random()*2)].play();
+        digAudio[Math.floor(Math.random() * 2)].play();
         break;
       case "l":
         if (player1.bomb > 0) {
@@ -139,7 +174,7 @@ function input(event) {
       case "f":
         player2.isBusy();
         player2.dig(printPlayer2Position);
-        digAudio[Math.floor(Math.random()*2)].play();
+        digAudio[Math.floor(Math.random() * 2)].play();
         break;
       case "g":
         console.log(printPlayer2Position);
@@ -166,7 +201,7 @@ function createGrid() {
 }
 
 function printDisplay() {
-  let count = 120;
+  let count = 83;
   let wholeDisplay = setInterval(() => {
     player1Score.innerText = player1.score;
     player2Score.innerText = player2.score;
@@ -182,11 +217,15 @@ function printDisplay() {
 }
 
 function printWinner() {
+  gameIntroOutro.play();
   if (player1.score > player2.score) {
-    alert("Blue Wins !");
+    displayWinner.innerText = "Blue Wins !!";
+    modalEnd.style.display = "flex";
   } else if (player1.score < player2.score) {
-    alert("Red Wins !");
-  } else alert("Draw !");
+    displayWinner.innerText = "Red Wins !!";
+    modalEnd.style.display = "flex";
+  } else displayWinner.innerText = "Draw !";
+  modalEnd.style.display = "flex";
 }
 
 function randomizeBoardContent() {
@@ -223,61 +262,61 @@ function checkRadius(bomb, radius, player) {
 function bombHasBeenPlantedGoRushB(terrorist, ct, position) {
   // <== sorry for the name I coudln't resist...
   const plantedBomb = [terrorist.yPosition, terrorist.xPosition];
-  
 
   setTimeout(function () {
     //this makes the bomb blows in a linear pattern and check if P1 or P2 is inside the "radius"
     if (checkRadius(plantedBomb, bombP1Radius, terrorist)) {
       console.log(`${terrorist.name}touché`);
       terrorist.score -= 200;
-      const bufferedPosition = document.getElementById( //I use this to get the actual position of the player
+      const bufferedPosition = document.getElementById(
+        //I use this to get the actual position of the player
         `${terrorist.xPosition}.${terrorist.yPosition}`
       );
-      terrorist.Stunned(bufferedPosition,terrorist.name);
-      
+      terrorist.Stunned(bufferedPosition, terrorist.name);
+
       console.log(plantedBomb);
     }
     if (checkRadius(plantedBomb, bombP1Radius, ct)) {
       console.log(`${ct.name}touché`);
       ct.score -= 200;
-      const bufferedPosition = document.getElementById( //I use this to get the actual position of the player,
+      const bufferedPosition = document.getElementById(
+        //I use this to get the actual position of the player,
         `${ct.xPosition}.${ct.yPosition}`
       );
-      ct.Stunned(bufferedPosition,ct.name);
+      ct.Stunned(bufferedPosition, ct.name);
       console.log(player2.score);
       console.log(plantedBomb);
     }
-    bombAudio[Math.floor(Math.random()*5)].play();
-    (function displayRadiusX() { //Yay my first IIFE !! it adds the bomb radius on the horizontal axe 
-      for (let i = (-bombP1Radius); i <= bombP1Radius; i++) {
+    bombAudio[Math.floor(Math.random() * 5)].play();
+    (function displayRadiusX() {
+      //Yay my first IIFE !! it adds the bomb radius on the horizontal axe
+      for (let i = -bombP1Radius; i <= bombP1Radius; i++) {
         position = document.getElementById(
-          `${plantedBomb[1]}.${plantedBomb[0]+i}`
+          `${plantedBomb[1]}.${plantedBomb[0] + i}`
         );
         const bufferPosition = position;
         if (bufferPosition != null) {
-        position.classList.add("bomb-radius");
-        setInterval(() => {
-          bufferPosition.classList.remove("bomb-radius");
-        }, 200);
+          position.classList.add("bomb-radius");
+          setInterval(() => {
+            bufferPosition.classList.remove("bomb-radius");
+          }, 200);
+        }
       }
-    }
     })();
-    (function displayRadiusY() { //Yay my 2nd IIFE !! it adds the bomb radius on the vertical axe 
-      for (let i = (-bombP1Radius); i <= bombP1Radius; i++) {
+    (function displayRadiusY() {
+      //Yay my 2nd IIFE !! it adds the bomb radius on the vertical axe
+      for (let i = -bombP1Radius; i <= bombP1Radius; i++) {
         position = document.getElementById(
-          `${plantedBomb[1]+i}.${plantedBomb[0]}`
+          `${plantedBomb[1] + i}.${plantedBomb[0]}`
         );
         const bufferPosition = position;
         if (bufferPosition != null) {
-        position.classList.add("bomb-radius");
-        setInterval(() => {
-          bufferPosition.classList.remove("bomb-radius");
-        }, 200);
-      }
+          position.classList.add("bomb-radius");
+          setInterval(() => {
+            bufferPosition.classList.remove("bomb-radius");
+          }, 200);
+        }
       }
     })();
   }, 2000);
-  
 }
-
-document.addEventListener("keyup", (event) => input(event));

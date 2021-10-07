@@ -8,24 +8,40 @@
     <script type="module" src="./js/index.js"></script>
     <title>Spaderman - Coding from Home !</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <!-- <audio autoplay src="/Sounds/intro2.mp3"></audio> -->
+    
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.4/axios.min.js"></script>
 </head>
 <body>
+    <section id="modal-start">
+        <div>
+            <h2>Instructions :</h2>
+            <p> Dig and find the Gems and Rubies. Prevent the other guy to do the same. Drop bombs on him.</p>
+            <button id="start-button">Let's Dig !</button>
+        </div>
+    </section>
+    <section id="modal-end">
+        <div>
+            <h2 id="printWinner">""</h2>
+            <a href="./index.html"><button id="restart-button" >Let's play again !</button></a>
+        </div>
+    </section>
+    
    <header>
-       <h1>Spaderman  </h1>
+       <h1>Spaderman  </h1> <!--They're Shovels ! Jesus Christ, Marie !-->
        <span>Coding from Home</span>
    </header>
    <section id="background-image">
-       <div class="players-div" id="player1">
+       <div class="players-div " id="player1">
            <h2>Score : <span id="player1-score">0</span></h2>
            <img class="players" src="./img/blue-shovel4.png" alt="blue-shovel">
            <h2>Bombs : <span id="player1-bombs">0</span></h2>
         </div>
        <div id="board-div" >
-           <h2>Time left : <span id="time-left">120</span></h2>
-           <div id="wrapper"></div>
+           <h2>Time left : <span id="time-left">84</span></h2>
+           
+           <div class="details" id="wrapper"></div>
            
         </div>
        <div class="players-div" id="player2">
@@ -36,15 +52,15 @@
    </section>
    <footer>
         <div><h3>Player1</h3>
-            <p>Move : Arrows</p>
-        <p>Dig : M</p>
-        <p>Bomb : L</p>
+            <p><b>Move :</b> Arrows</p>
+            <p><b>Dig :</b> M</p>
+            <p><b>Bomb :</b> L</p>
         </div>
        <div><h2><======== Controls =======></h2></div>
        <div><h3>Player2</h3>
-        <p>Move : ZQSD</p>
-        <p>Dig : F</p>
-        <p>Bomb : G</p>
+        <p><b>Move :</b> ZQSD</p>
+        <p><b>Dig :</b> F</p>
+        <p><b>Bomb :</b> G</p>
         
         </div>
    </footer>
