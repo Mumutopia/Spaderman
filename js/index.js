@@ -7,22 +7,22 @@ import { gamepad } from "./gamepad.js";
 let player1 = new Player(1, 1, 0, 5, "player1");
 let player2 = new Player(8, 8, 0, 5, "player2");
 let digAudio = [
-  new Audio("../sounds/digging.mp3"),
-  new Audio("../sounds/digging2.mp3"),
+  new Audio("/sounds/digging.mp3"),
+  new Audio("/sounds/digging2.mp3"),
 ];
 export let getItemAudio = [
-  new Audio("../sounds/get-item.mp3"),
-  new Audio("../sounds/get-item2.mp3"),
-  new Audio("../sounds/get-item3.mp3"),
+  new Audio("/sounds/get-item.mp3"),
+  new Audio("/sounds/get-item2.mp3"),
+  new Audio("/sounds/get-item3.mp3"),
 ];
-let gameAudio = new Audio("../sounds/game-music.mp3");
-let gameIntroOutro = new Audio("../sounds/intro2.mp3");
+let gameAudio = new Audio("/sounds/game-music.mp3");
+let gameIntroOutro = new Audio("/sounds/intro2.mp3");
 let bombAudio = [
-  new Audio("../sounds/bomb1.mp3"),
-  new Audio("../sounds/bomb2.mp3"),
-  new Audio("../sounds/bomb3.mp3"),
-  new Audio("../sounds/bomb4.mp3"),
-  new Audio("../sounds/bomb5.mp3"),
+  new Audio("/sounds/bomb1.mp3"),
+  new Audio("/sounds/bomb2.mp3"),
+  new Audio("/sounds/bomb3.mp3"),
+  new Audio("/sounds/bomb4.mp3"),
+  new Audio("/sounds/bomb5.mp3"),
 ];
 let player1Score = document.getElementById("player1-score");
 let player2Score = document.getElementById("player2-score");
